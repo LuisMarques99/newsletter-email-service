@@ -8,4 +8,5 @@ Distributed under the [MIT License](https://choosealicense.com/licenses/mit/). S
 
 ## Author
 
-- **Luis Marques** - 8170485 - [LuisMarques99](https://github.com/LuisMarques99)
+- **Carlos Sousa** - [carlossousa07](https://github.com/carlossousa07)
+- **Luis Marques** - [LuisMarques99](https://github.com/LuisMarques99)
