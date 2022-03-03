@@ -7,8 +7,12 @@ from email.mime.multipart import MIMEMultipart
 
 
 def send_email() -> None:
+    """
+    Email sender
+    :return: None
+    """
     SENDER_PLATFORM = "Gmail"
-    RECEIVER_EMAIL_ADDRESS = "luisserafim99@hotmail.com"
+    RECEIVER_EMAIL_ADDRESS = "luisserafim99@gmail.com"
 
     with open("secrets.json", "r") as secrets_file:
         secrets = json.load(secrets_file)
@@ -34,40 +38,28 @@ def send_email() -> None:
     with open(os.path.join("..", "files", "email_content.html"), "r") as html_file:
         for row in html_file:
             html_message += f"{row}\n"
-    html = """\
-    <html>
-      <body>
-        <h1>Python Test Email</h1>
-        <p><b>Python Mail Test</b>
-        <br>
-           This is HTML email with attachment.<br>
-           Click on <a href="https://fedingo.com">Fedingo Resources</a> 
-           for more python articles.
-        </p>
-      </body>
-    </html>
-    """
 
-    part = MIMEText(html_message, "html")
-    msg.attach(part)
+    html_content = MIMEText(html_message, "html")
+    msg.attach(html_content)
 
     # Add Attachment
-    with open(filename, "rb") as attachment:
-        part = MIMEBase("application", "octet-stream")
-        part.set_payload(attachment.read())
+    with open(filename, "rb") as attachment_file:
+        attachment = MIMEBase("application", "octet-stream")
+        attachment.set_payload(attachment_file.read())
 
-    encoders.encode_base64(part)
+    encoders.encode_base64(attachment)
 
-    # Set mail headers
-    part.add_header(
+    # Set attachment headers
+    attachment.add_header(
         "Content-Disposition",
         "attachment", filename=filename
     )
-    msg.attach(part)
+    msg.attach(attachment)
 
-    # PORT = 465
-    PORT = 587
+    # PORT = 465 # SSL
+    PORT = 587  # TLS/STARTTLS
     CONTEXT = ssl.create_default_context()
+
     # Create secure SMTP connection
     server = smtplib.SMTP(SENDER_SMTP, PORT)
     try:
@@ -84,6 +76,10 @@ def send_email() -> None:
 
 
 def main() -> None:
+    """
+    Main function
+    :return: None
+    """
     send_email()
     # for i in range(20):
     #     send_email()
