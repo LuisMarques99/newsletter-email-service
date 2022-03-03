@@ -1,0 +1,10 @@
+[
+  {
+    "name": "Gmail",
+    "smtp": "smtp.gmail.com"
+  },
+  {
+    "name": "Outlook",
+    "smtp": "smtp-mail.outlook.com"
+  }
+]
