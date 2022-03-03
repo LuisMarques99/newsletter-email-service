@@ -30,6 +30,10 @@ def send_email() -> None:
     filename = os.path.join("..", "files", "invoice.pdf")
 
     # HTML Message Part
+    html_message = str()
+    with open(os.path.join("..", "files", "email_content.html"), "r") as html_file:
+        for row in html_file:
+            html_message += f"{row}\n"
     html = """\
     <html>
       <body>
@@ -44,7 +48,7 @@ def send_email() -> None:
     </html>
     """
 
-    part = MIMEText(html, "html")
+    part = MIMEText(html_message, "html")
     msg.attach(part)
 
     # Add Attachment
@@ -80,9 +84,10 @@ def send_email() -> None:
 
 
 def main() -> None:
-    for i in range(20):
-        send_email()
-        time.sleep(1)
+    send_email()
+    # for i in range(20):
+    #     send_email()
+    #     time.sleep(1)
 
 
 if __name__ == "__main__":
