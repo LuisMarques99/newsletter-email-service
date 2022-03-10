@@ -1,4 +1,4 @@
-import os, smtplib, ssl, json, time
+import os, smtplib, ssl, json
 
 from email import encoders
 from email.mime.base import MIMEBase
