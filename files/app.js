@@ -1,5 +1,5 @@
 const expandTextBehaviour = () => {
-    document.getElementsByClassName('.more-btn').on('click', () => {
+    document.find('.more-btn').on('click', () => {
         this.parent().parent().find('.more-text').toggleClass('active');
     });
 };
