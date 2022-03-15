@@ -31,7 +31,7 @@ def send_email() -> None:
     msg["Subject"] = "Python Test Email"
     msg["From"] = SENDER_EMAIL_ADDRESS
     msg["To"] = RECEIVER_EMAIL_ADDRESS
-    filename = os.path.join("..", "files", "invoice.pdf")
+    # filename = os.path.join("..", "files", "invoice.pdf")
 
     # HTML Message Part
     html_message = str()
@@ -42,19 +42,19 @@ def send_email() -> None:
     html_content = MIMEText(html_message, "html")
     msg.attach(html_content)
 
-    # Add Attachment
-    with open(filename, "rb") as attachment_file:
-        attachment = MIMEBase("application", "octet-stream")
-        attachment.set_payload(attachment_file.read())
+    # # Add Attachment
+    # with open(filename, "rb") as attachment_file:
+    #     attachment = MIMEBase("application", "octet-stream")
+    #     attachment.set_payload(attachment_file.read())
 
-    encoders.encode_base64(attachment)
+    # encoders.encode_base64(attachment)
 
-    # Set attachment headers
-    attachment.add_header(
-        "Content-Disposition",
-        "attachment", filename=filename
-    )
-    msg.attach(attachment)
+    # # Set attachment headers
+    # attachment.add_header(
+    #     "Content-Disposition",
+    #     "attachment", filename=filename
+    # )
+    # msg.attach(attachment)
 
     # PORT = 465 # SSL
     PORT = 587  # TLS/STARTTLS
