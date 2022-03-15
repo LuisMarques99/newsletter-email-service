@@ -12,7 +12,7 @@ def send_email() -> None:
     :return: None
     """
     SENDER_PLATFORM = "Gmail"
-    RECEIVER_EMAIL_ADDRESS = "luisserafim99@gmail.com"
+    RECEIVER_EMAIL_ADDRESS = "carloshps@outlook.pt"
 
     with open("secrets.json", "r") as secrets_file:
         secrets = json.load(secrets_file)
